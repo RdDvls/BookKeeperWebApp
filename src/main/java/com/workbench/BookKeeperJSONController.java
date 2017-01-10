@@ -2,6 +2,7 @@ package com.workbench;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,17 @@ public class BookKeeperJSONController {
             bookList.add(book);
         }
         return bookList;
+    }
+
+    @RequestMapping (path = "/addBook.json", method = RequestMethod.POST)
+    public List<Book> addBook(HttpSession session, Model model, @RequestBody Book bookItem)throws Exception{
+        Reader reader = (Reader) session.getAttribute("user");
+        if(reader == null){
+            throw new Exception("Must be logged in as a reader first");
+        }
+        bookItem.readers = reader;
+        books.save(bookItem);
+        return getAllBooks(session,model);
     }
 
 

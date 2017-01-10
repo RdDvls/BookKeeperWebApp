@@ -9,11 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!--
+<!--
 {{! changing the mustache delimiter so it doesn't conflict with  }}
 {{! the default angularjs delimeters - https://mustache.github.io/mustache.5.html for more info  }}
 {{=<% %>=}}
-  -->
+-->
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="../static/js/ng-controller.js"></script>-
@@ -43,37 +43,39 @@
 </head>
 
 <body ng-controller="BookKeeperController">
-<!-- Navigation -->
-<!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
-    <!--<div class="container">-->
-        <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
-        <!--<div class="navbar-header">-->
-            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
-                <!--<span class="sr-only">Toggle navigation</span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-            <!--</button>-->
-            <!--<a class="navbar-brand" href="#">Start Bootstrap</a>-->
-        <!--</div>-->
-        <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
-        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-            <!--<ul class="nav navbar-nav">-->
-                <!--<li>-->
-                    <!--<a href="#">About</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="#">Services</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="#">Contact</a>-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
-        <!--&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
-    <!--</div>-->
-    <!--&lt;!&ndash; /.container &ndash;&gt;-->
-<!--</nav>-->
+ Navigation
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Book Keeper</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+ <br><br>
+ <br><br>
 <!-- Page Content -->
 <div>
     <div class="row">
@@ -103,25 +105,35 @@
             <%#user%>
            <h1>Welcome, <%firstName%>!
            </h1>
-            <input type="button" ng-click="getAllBooks()" value="Hit Me!">
             <form action="/logout" method="post">
                 <button type="submit">Logout</button>
             </form>
-            <%/user%>
+        </div>
+        <div class="bookList">
+            <h3><%firstName%>'s Books</h3>
+            <input type="button" ng-click="getAllBooks()" value="Show me my books!">
+            <br>
+            <ul>
+                <li ng-repeat="book in books">
+                    {{book.title}} -- {{book.author}}
+                </li>
+            </ul>
+            <h4>Enter New Book</h4>
+            <span>Enter New Book Information:
+                <input type="text" ng-model="newBook.title" placeholder="Title">
+                <input type="text" ng-model="newBook.author" placeholder="Author">
+                <input type="button" ng-click="addBook()" value="Add Book">
+            </span>
+        </div>
+        <div class="bookList">
+            <h3><%firstName%>'s Loaned-Out Books</h3>
         </div>
     </div>
     <!-- /.row -->
-
 </div>
 <!-- /.container -->
-<div>
-    <h3>Book List</h3>
-    <ul>
-        <li ng-repeat="book in books">
-            {{book.title}} {{book.author}}
-        </li>
-    </ul>
-</div>
+ <%/user%>
+
 <!-- jQuery Version 1.11.1 -->
 <script src="js/jquery.js"></script>
 
