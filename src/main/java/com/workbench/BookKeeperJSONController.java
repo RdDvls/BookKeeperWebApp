@@ -20,21 +20,21 @@ public class BookKeeperJSONController {
     BookRepository books;
 
     @RequestMapping (path = "/books.json", method = RequestMethod.GET)
-    public List<Book> getAllBooks(HttpSession session, Model model){
+    public List<BookItem> getAllBooks(HttpSession session, Model model){
         if(session.getAttribute("user") != null){
             model.addAttribute("user",session.getAttribute("user"));
         }
         Reader currentReader = (Reader)session.getAttribute("user");
-        ArrayList<Book> bookList = new ArrayList<>();
-        Iterable<Book> allBooks = books.findByReaders(currentReader);
-        for(Book book : allBooks){
-            bookList.add(book);
+        ArrayList<BookItem> bookItemList = new ArrayList<>();
+        Iterable<BookItem> allBooks = books.findByReaders(currentReader);
+        for(BookItem bookItem : allBooks){
+            bookItemList.add(bookItem);
         }
-        return bookList;
+        return bookItemList;
     }
 
     @RequestMapping (path = "/addBook.json", method = RequestMethod.POST)
-    public List<Book> addBook(HttpSession session, Model model, @RequestBody Book bookItem)throws Exception{
+    public List<BookItem> addBook(HttpSession session, Model model, @RequestBody BookItem bookItem)throws Exception{
         Reader reader = (Reader) session.getAttribute("user");
         if(reader == null){
             throw new Exception("Must be logged in as a reader first");

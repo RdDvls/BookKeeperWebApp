@@ -18,15 +18,19 @@ public class BookKeeperController {
     ReaderRepository readers;
     @Autowired
     BookRepository books;
+    @Autowired
+    FriendRepository friends;
 
     @PostConstruct
     public void init(){
         Reader newReader = new Reader("Clay","Strickland","RdDvls","pass");
+        Friend newFriend = new Friend(readers.findByUserName("RdDvls"), "FriendName", "StringEmail");
+        friends.save(newFriend);
         readers.save(newReader);
-        Book newBook1 = new Book(readers.findByUserName("RdDvls"),"Author1","Title1");
-        Book newBook2 = new Book(readers.findByUserName("RdDvls"),"Author2", "Title2");
-        books.save(newBook1);
-        books.save(newBook2);
+        BookItem newBookItem1 = new BookItem(readers.findByUserName("RdDvls"),"Author1","Title1");
+        BookItem newBookItem2 = new BookItem(readers.findByUserName("RdDvls"),"Author2", "Title2");
+        books.save(newBookItem1);
+        books.save(newBookItem2);
     }
     @RequestMapping(path = "/",method = RequestMethod.GET)
     public String home(Model model, HttpSession session){

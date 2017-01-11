@@ -7,23 +7,25 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="books")
-public class Book {
+public class BookItem {
     @Id
     @GeneratedValue
-    int id;
+    int Bookid;
 
     @ManyToOne
     Reader readers;
 
     @Column(nullable = false)
     private String author;
+
     @Column(nullable = false)
     private String title;
 
-    public Book() {
+
+    public BookItem() {
     }
 
-    public Book(Reader readers, String author, String title) {
+    public BookItem(Reader readers, String author, String title) {
         this.readers = readers;
         this.author = author;
         this.title = title;

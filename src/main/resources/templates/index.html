@@ -109,13 +109,13 @@
                 <button type="submit">Logout</button>
             </form>
         </div>
-        <div class="bookList">
+        <div class="bookItemList">
             <h3><%firstName%>'s Books</h3>
             <input type="button" ng-click="getAllBooks()" value="Show me my books!">
             <br>
             <ul>
-                <li ng-repeat="book in books">
-                    {{book.title}} -- {{book.author}}
+                <li ng-repeat="bookItem in books">
+                    {{bookItem.title}} -- {{bookItem.author}}
                 </li>
             </ul>
             <h4>Enter New Book</h4>
@@ -125,7 +125,7 @@
                 <input type="button" ng-click="addBook()" value="Add Book">
             </span>
         </div>
-        <div class="bookList">
+        <div class="bookItemList">
             <h3><%firstName%>'s Loaned-Out Books</h3>
         </div>
     </div>

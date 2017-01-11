@@ -7,6 +7,6 @@ import java.util.List;
 /**
  * Created by RdDvls on 1/4/17.
  */
-public interface BookRepository extends CrudRepository <Book, Integer>{
-    List<Book> findByReaders (Reader reader);
+public interface BookRepository extends CrudRepository <BookItem, Integer>{
+    List<BookItem> findByReaders (Reader reader);
 }
