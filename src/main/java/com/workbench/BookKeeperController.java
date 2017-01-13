@@ -24,9 +24,9 @@ public class BookKeeperController {
     @PostConstruct
     public void init(){
         Reader newReader = new Reader("Clay","Strickland","RdDvls","pass");
+        readers.save(newReader);
         Friend newFriend = new Friend(readers.findByUserName("RdDvls"), "FriendName", "StringEmail");
         friends.save(newFriend);
-        readers.save(newReader);
         BookItem newBookItem1 = new BookItem(readers.findByUserName("RdDvls"),"Author1","Title1");
         BookItem newBookItem2 = new BookItem(readers.findByUserName("RdDvls"),"Author2", "Title2");
         books.save(newBookItem1);

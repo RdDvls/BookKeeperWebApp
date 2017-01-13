@@ -42,5 +42,31 @@ angular.module('BookKeeper',[])
                             console.log("error");
                             });
         };
+        $scope.getAllFriends = function(){
+            console.log("Retrieving data...");
+                $http.get("http://localhost:8080/friends.json")
+                    .then(
+                        function success (response){
+                            console.log(response.data);
+                            console.log("Adding data to scope...");
+                            $scope.friends = response.data;
+                        },
+                        function error(response){
+                            console.log("Error retrieving data");
+                        });
+        };
+        $scope.addFriend = function(){
+            console.log("About to add the following friend data: " + JSON.stringify($scope.newFriend));
+                $http.post("/addFriend.json",$scope.newFriend)
+                    .then(
+                        function success(response){
+                            console.log(response.data);
+                            console.log("Adding data to scope..");
+                            $scope.friends = response.data;
+                        },
+                        function error(response){
+                            console.log("error");
+                        });
+        };
 
     });
