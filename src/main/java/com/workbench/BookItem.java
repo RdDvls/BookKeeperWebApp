@@ -18,6 +18,14 @@ public class BookItem {
     @Column(nullable = false)
     private String author;
 
+    public Reader getReaders() {
+        return readers;
+    }
+
+    public void setReaders(Reader readers) {
+        this.readers = readers;
+    }
+
     @Column(nullable = false)
     private String title;
 
